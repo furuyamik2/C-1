@@ -29,7 +29,7 @@ if uploaded_files:
         # OCR結果を表示
         st.dataframe(concat_df, use_container_width=True)
         
-    # 保存ボタン
-    if st.sidebar.button('Save'):
-        csv_to_sql(output_file, 'info')
-        st.success("データベースに保存されました。")
+        # 保存ボタン
+        if st.sidebar.button('Save'):
+            csv_to_sql(output_file, 'info')
+            st.success("データベースに保存されました。")
