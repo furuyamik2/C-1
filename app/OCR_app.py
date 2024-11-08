@@ -8,6 +8,7 @@ from io import StringIO
 from datetime import datetime
 from PIL import Image
 from ocr_function import ocr_to_csv
+from DB.to_db import csv_to_sql
 
 # APP
 st.title('Food Tracker')
