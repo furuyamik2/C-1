@@ -9,9 +9,11 @@ from DB.save_db import csv_to_sql
 # APP タイトル
 st.title('Food Tracker')
 
-# データベースの内容を取得する関数
+# データベースの絶対パスを取得
+db_path = os.path.join(os.path.dirname(__file__), 'DB', 'food_info.db')
+
 def load_data():
-    conn = sqlite3.connect('./DB/food_info.db')
+    conn = sqlite3.connect(db_path)
     df = pd.read_sql("SELECT * FROM info", conn)
     conn.close()
     return df
