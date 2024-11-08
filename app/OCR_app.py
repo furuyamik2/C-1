@@ -28,4 +28,5 @@ if uploaded_files:
         
         st.dataframe(concat_df, use_container_width=True)
         with open(output_file, 'rb') as f:
-            csv_to_sql(output_file, 'info')
+            if st.sidebar.button('Save'):
+                csv_to_sql(output_file, 'info')
