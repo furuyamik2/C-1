@@ -8,7 +8,7 @@ from io import StringIO
 from datetime import datetime
 from PIL import Image
 from ocr_function import ocr_to_csv
-from DB.to_db import csv_to_sql
+from DB.save_db import csv_to_sql
 
 # APP
 st.title('Food Tracker')
@@ -28,4 +28,4 @@ if uploaded_files:
         
         st.dataframe(concat_df, use_container_width=True)
         with open(output_file, 'rb') as f:
-            st.download_button('Download CSV', f, file_name=output_filename)
+            csv_to_sql(output_file, 'info')
