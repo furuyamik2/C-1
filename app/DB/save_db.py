@@ -24,3 +24,10 @@ def csv_to_sql(csv_name, table_name):
     # 接続を閉じる
     conn.close()
 
+# データベースの内容を取得する関数
+def load_data():
+    conn = sqlite3.connect('food_info.db')
+    df = pd.read_sql("SELECT * FROM info", conn)
+    conn.close()
+    return df
+
