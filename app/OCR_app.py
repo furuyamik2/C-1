@@ -34,11 +34,4 @@ if uploaded_files:
         # CSVをデータベースに保存
         with open(output_file, 'rb') as f:
             if st.sidebar.button('Save'):
-                csv_to_sql(output_file, 'info')  # 'info'はテーブル名です
-                st.success("データベースに保存されました。")
 
-                # データベースからデータを取得して表示
-                conn = sqlite3.connect('./DB/food_info.db')
-                df_from_db = pd.read_sql("SELECT * FROM info", conn)
-                st.dataframe(df_from_db, use_container_width=True)
-                conn.close()
