@@ -9,20 +9,6 @@ from DB.save_db import csv_to_sql
 # APP タイトル
 st.title('Food Tracker')
 
-# データベースの絶対パスを取得
-db_path = os.path.join(os.path.dirname(__file__), 'DB', 'food_info.db')
-
-def load_data():
-    conn = sqlite3.connect(db_path)
-    df = pd.read_sql("SELECT * FROM info", conn)
-    conn.close()
-    return df
-
-# 初期表示としてデータベースの内容を表示
-st.subheader("現在のデータベース内容")
-df_from_db = load_data()
-st.dataframe(df_from_db, use_container_width=True)
-
 # サイドバーにファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
@@ -43,12 +29,5 @@ if uploaded_files:
         st.dataframe(concat_df, use_container_width=True)
         
         # 保存ボタン
-        if st.sidebar.button('Save to Database'):
-            # CSVファイルをデータベースに保存
-            csv_to_sql(output_file, 'info')  # 'info'はテーブル名です
-            st.success("データベースに保存されました。")
-
-            # 更新されたデータベースの内容を再表示
-            df_from_db = load_data()
-            st.subheader("更新されたデータベース内容")
-            st.dataframe(df_from_db, use_container_width=True)
+        with open(output_file, 'rb') as f:
+            st.download_button('Download CSV', f, file_name=output_filename)
