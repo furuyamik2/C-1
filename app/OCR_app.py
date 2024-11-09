@@ -24,12 +24,8 @@ if uploaded_files:
     if st.sidebar.button('Run OCR'):
         # OCRを実行してCSVファイルを生成
         output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
+        csv_to_sql(output_file, 'info')
         st.success("OCR completed!")
         
         # OCR結果を表示
         st.dataframe(concat_df, use_container_width=True)
-        
-        # 保存ボタン
-        if st.sidebar.button('Save'):
-            csv_to_sql(output_file, 'info')
-            st.success("データベースに保存されました。")
