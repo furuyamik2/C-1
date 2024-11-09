@@ -149,7 +149,7 @@ def ocr_to_csv(uploaded_files, output_folder, output_name):
         generated_names = name_content.split('\n')
 
         # 登録日を生成
-        registration_date = datetime.now().strftime("%Y/%m/%d")
+        registration_date = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
         for line in category_content.split('\n'):
             if line.strip():
