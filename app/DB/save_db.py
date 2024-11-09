@@ -31,3 +31,18 @@ def load_data():
     conn.close()
     return df
 
+def clear_table(table_name):
+    # SQLiteデータベースに接続
+    conn = sqlite3.connect('food_info.db')
+    c = conn.cursor()
+    
+    # テーブルのデータを全削除
+    query = f'DELETE FROM {table_name}'
+    c.execute(query)
+    
+    # 変更を保存
+    conn.commit()
+    print(f"'{table_name}' テーブルのデータが削除されました。")
+    
+    # 接続を閉じる
+    conn.close()
