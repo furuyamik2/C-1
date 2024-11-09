@@ -9,7 +9,7 @@ def csv_to_sql(csv_name, table_name):
     conn = sqlite3.connect('food_info.db')
     
     # DataFrameを指定のテーブル名でデータベースに保存
-    df.to_sql(table_name, conn, if_exists='replace', index=False)  # index=FalseでDataFrameのインデックス列は含めない
+    df.to_sql(table_name, conn, if_exists='append', index=False)  # index=FalseでDataFrameのインデックス列は含めない
 
     # テーブルからデータを読み込んで表示
     c = conn.cursor()
