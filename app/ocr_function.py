@@ -7,6 +7,7 @@ import requests
 from io import StringIO
 from datetime import datetime
 from PIL import Image
+import pytz
 
 # OpenAI API Key
 api_key = st.secrets["API"]
@@ -148,8 +149,10 @@ def ocr_to_csv(uploaded_files, output_folder, output_name):
         # 生成された名称を行ごとに分割
         generated_names = name_content.split('\n')
 
+        # タイムゾーンを指定（例: 日本標準時）
+        japan_tz = pytz.timezone('Asia/Tokyo')
         # 登録日を生成
-        registration_date = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+        registration_date = datetime.now(japan_tz).strftime("%Y/%m/%d %H:%M:%S")
 
         for line in category_content.split('\n'):
             if line.strip():
