@@ -1,0 +1,125 @@
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+h1{
+  color:#38d040;
+  text-align:left;
+  margin-top: 25px;
+  font-size: 50px;
+}
+
+.container{
+  text-align: right;
+}
+
+.custom-button{
+  background-color:#4CAF50;
+  color:#ffffff;
+  text-align: center;
+  border: none;
+  padding: 15px 40px;
+  text-decoration: none;
+  font-size:16px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+
+}
+
+#dropdown{
+  display: none;
+  margin-top: 20px;
+}
+
+button{
+  background-color:#4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+/* ホバー時のスタイル */
+.custom-button:hover {
+  background-color: #45a049; /* ホバー時の背景色 */
+}
+
+/* ボタンを押したときのスタイル */
+.custom-button:active {
+  background-color: #3e8e41; /* クリック時の背景色 */
+  transform: scale(0.98); /* クリック時に少し小さくする */
+}
+
+/* 選択肢コンテナのスタイル */
+#choices {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* 選択肢ボタンのスタイル */
+.choice-button {
+  background-color: #4CAF50; /* 青色の背景 */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 背景色の変化をスムーズに */
+}
+
+/* Tracker list */
+.tracker-list {
+  list-style-type: none;
+  margin-top:15px;
+}
+
+/* Tracker item styling */
+.tracker-item {
+  display: flex;
+  align-items: center;
+  padding:  25px 30px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  background-color: #f5f5f5;
+}
+
+/* Circle styling for red, yellow, and green */
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* Date styling */
+.date {
+  font-size: 25px;
+  color: #333;
+}
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.circle {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+
