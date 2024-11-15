@@ -4,7 +4,7 @@ import os
 from ocr_function import ocr_to_csv
 from DB.save_db import csv_to_sql
 from DB.save_db import load_data
-import streamlit.components.v1 as stc
+import streamlit.components.v1 as components
 
 
 # APP タイトル
@@ -13,8 +13,12 @@ st.title('Food Tracker')
 # サイドバーにファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
-#html
-stc.html("./view/html/index.html")
+# HTMLファイルの読み込み
+with open("./view/html/index.html", "r", encoding="utf-8") as f:
+    html_content = f.read()
+
+# HTMLを表示
+components.html(html_content)
 
 if uploaded_files:
     st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
