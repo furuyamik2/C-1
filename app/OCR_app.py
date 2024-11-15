@@ -20,10 +20,10 @@ html_code = """
     <p>これは直接 Streamlit に書き込んだ HTML コードの表示例です。</p>
     <p>CSS や JavaScript を含む内容も表示できます。</p>
 """
-components.html(html_code, height=300) 
+components.html(html_code) 
 
  # ファイルアップローダーを追加
-uploaded_files = st.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
 # OCRに関する実装
 if uploaded_files:
@@ -31,7 +31,7 @@ if uploaded_files:
     
     # 出力ファイル名を入力
     output_folder = os.getcwd()
-    output_filename = st.text_input("Enter output file name", value="ocr_results.csv", placeholder="ocr_results.csv")
+    output_filename = "ocr_results.csv"
     
     # OCR実行ボタン
     if st.button('Run OCR'):
