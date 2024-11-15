@@ -7,12 +7,10 @@ from DB.save_db import load_data
 import streamlit.components.v1 as components
 import const
 
-
+st.set_page_config(**const.SET_PAGE_CONFIG)
 
 # APP タイトル
 st.title('Food Tracker')
-
-st.set_page_config(**const.SET_PAGE_CONFIG)
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 # サイドバーにファイルアップローダーを追加
