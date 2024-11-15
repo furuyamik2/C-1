@@ -32,12 +32,18 @@ if uploaded_files:
     # 出力ファイル名を入力
     output_folder = os.getcwd()
     output_filename = "ocr_results.csv"
-    
+
+   
+
     # OCR実行ボタン
-    if st.button('Run OCR'):
-        # OCRを実行してCSVファイルを生成
-        output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
-        csv_to_sql(output_file, 'info')
+    if st.sidebar.button('Run OCR'):
+
+        with st.spinner('OCRを実行中...'):
+            # OCRを実行してCSVファイルを生成
+            output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
+            csv_to_sql(output_file, 'info')
+    
+        
         st.success("OCR completed!")
         
         # OCR結果を表示
