@@ -42,10 +42,8 @@ if uploaded_files:
                 """
                 <style>
                 .spinner > div {
-                    font-size: 30px; /* フォントサイズを大きく */
+                    font-size: 50px; /* フォントサイズを大きく */
                     color: #008080; /* スピナーの色 */
-                    text-align: center;
-                    margin-top: 200px; /* 画面中央に配置 */
                 }
                 </style>
                 """, unsafe_allow_html=True)
