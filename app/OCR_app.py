@@ -27,7 +27,7 @@ uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg
 
 # OCRに関する実装
 if uploaded_files:
-    st.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
+    st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
     
     # 出力ファイル名を入力
     output_folder = os.getcwd()
@@ -38,6 +38,18 @@ if uploaded_files:
     # OCR実行ボタン
     if st.sidebar.button('Run OCR'):
 
+        st.markdown(
+                """
+                <style>
+                .spinner > div {
+                    font-size: 30px; /* フォントサイズを大きく */
+                    color: #008080; /* スピナーの色 */
+                    text-align: center;
+                    margin-top: 200px; /* 画面中央に配置 */
+                }
+                </style>
+                """, unsafe_allow_html=True)
+        
         with st.spinner('OCRを実行中...'):
             # OCRを実行してCSVファイルを生成
             output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
