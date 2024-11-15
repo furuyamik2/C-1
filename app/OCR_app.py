@@ -36,7 +36,7 @@ if selected_option == "OCR":
             
             # OCR結果を表示
             st.dataframe(concat_df, use_container_width=True)
-            
+
 elif selected_option == "DataBase":
     st.title("データベース セクション")
     st.write("ここではデータベースに関する情報を扱います。")
@@ -56,19 +56,4 @@ html_code = """
 """
 components.html(html_code, height=300) 
 
-if uploaded_files:
-    st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
-    
-    # 出力ファイル名を入力
-    output_folder = os.getcwd()
-    output_filename = st.text_input("Enter output file name", value="ocr_results.csv", placeholder="ocr_results.csv")
-    
-    # OCR実行ボタン
-    if st.sidebar.button('Run OCR'):
-        # OCRを実行してCSVファイルを生成
-        output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
-        csv_to_sql(output_file, 'info')
-        st.success("OCR completed!")
-        
-        # OCR結果を表示
-        st.dataframe(concat_df, use_container_width=True)
+
