@@ -15,12 +15,11 @@ st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 selected_option = option_menu(**const.OPTION_MENU_CONFIG)
 
-uploaded_files = None
+ # ファイルアップローダーを追加
+uploaded_files = st.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
 # メニューごとのコンテンツ表示
 if selected_option == "OCR":
-    # サイドバーにファイルアップローダーを追加
-    uploaded_files = st.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
     # OCRに関する実装を追加
     if uploaded_files:
