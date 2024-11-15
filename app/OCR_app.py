@@ -5,10 +5,15 @@ from ocr_function import ocr_to_csv
 from DB.save_db import csv_to_sql
 from DB.save_db import load_data
 import streamlit.components.v1 as components
+import const
+
 
 
 # APP タイトル
 st.title('Food Tracker')
+
+st.set_page_config(**const.SET_PAGE_CONFIG)
+st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 # サイドバーにファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
