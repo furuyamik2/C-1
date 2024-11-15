@@ -6,12 +6,14 @@ from DB.save_db import csv_to_sql
 from DB.save_db import load_data
 import streamlit.components.v1 as components
 import const
+from streamlit_option_menu import option_menu
 
 st.set_page_config(**const.SET_PAGE_CONFIG)
 
 # APP タイトル
 st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
+selected = option_menu(**const.OPTION_MENU_CONFIG)
 
 # サイドバーにファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)

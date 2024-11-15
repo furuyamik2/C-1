@@ -7,7 +7,7 @@ SET_PAGE_CONFIG = {
 
 OPTION_MENU_CONFIG = {
     "menu_title": "Food Traker",
-    "options": ["About", "DataBase", "Other"],
+    "options": ["ORC", "DataBase", "Other"],
     "icons": ["bi-chat-dots", "bi-cloud-arrow-up", "bi-book"],
     "default_index": 0,
     "orientation": "horizontal",
