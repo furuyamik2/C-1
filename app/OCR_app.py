@@ -13,12 +13,13 @@ st.title('Food Tracker')
 # サイドバーにファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
-# HTMLファイルの読み込み
-with open("./view/html/index.html", "r", encoding="utf-8") as f:
-    html_content = f.read()
-
-# HTMLを表示
-components.html(html_content)
+# HTML コードを直接指定して表示
+html_code = """
+    <h1 style="color: blue;">Hello, Streamlit!</h1>
+    <p>これは直接 Streamlit に書き込んだ HTML コードの表示例です。</p>
+    <p>CSS や JavaScript を含む内容も表示できます。</p>
+"""
+components.html(html_code, height=300) 
 
 if uploaded_files:
     st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
