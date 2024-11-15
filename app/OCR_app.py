@@ -37,16 +37,6 @@ if uploaded_files:
 
     # OCR実行ボタン
     if st.sidebar.button('Run OCR'):
-
-        st.markdown(
-                """
-                <style>
-                .spinner > div {
-                    font-size: 100px; /* フォントサイズを大きく */
-                    color: #008080; /* スピナーの色 */
-                }
-                </style>
-                """, unsafe_allow_html=True)
         
         with st.spinner('OCRを実行中...'):
             # OCRを実行してCSVファイルを生成
