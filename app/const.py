@@ -4,29 +4,6 @@ SET_PAGE_CONFIG = {
     "initial_sidebar_state": "collapsed",
 }
 
-
-OPTION_MENU_CONFIG = {
-    "menu_title": "Menu",
-    "options": ["ORC", "DataBase", "Other"],
-    "icons": ["bi-chat-dots", "bi-cloud-arrow-up", "bi-book"],
-    "default_index": 0,
-    "orientation": "horizontal",
-    "styles": {
-        "container": {
-            "margin": "0!important",
-            "padding": "0!important",
-            "background-color": "#fafafa",
-        },
-        "icon": {"color": "fafafa", "font-size": "25px"},
-        "nav-link": {
-            "font-size": "20px",
-            "margin": "0px",
-            "--hover-color": "#eee",
-        },
-        "nav-link-selected": {"background-color": "004a55"},
-    },
-}
-
 HIDE_ST_STYLE = """
                 <style>
                 div[data-testid="stToolbar"] {
