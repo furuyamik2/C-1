@@ -13,10 +13,40 @@ st.set_page_config(**const.SET_PAGE_CONFIG)
 # APP タイトル
 st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
-selected = option_menu(**const.OPTION_MENU_CONFIG)
+selected_option = option_menu(**const.OPTION_MENU_CONFIG)
+# メニューごとのコンテンツ表示
+if selected_option == "OCR":
+    # サイドバーにファイルアップローダーを追加
+    uploaded_files = st.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
-# サイドバーにファイルアップローダーを追加
-uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+    # OCRに関する実装を追加
+    if uploaded_files:
+        st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
+        
+        # 出力ファイル名を入力
+        output_folder = os.getcwd()
+        output_filename = st.text_input("Enter output file name", value="ocr_results.csv", placeholder="ocr_results.csv")
+        
+        # OCR実行ボタン
+        if st.sidebar.button('Run OCR'):
+            # OCRを実行してCSVファイルを生成
+            output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
+            csv_to_sql(output_file, 'info')
+            st.success("OCR completed!")
+            
+            # OCR結果を表示
+            st.dataframe(concat_df, use_container_width=True)
+            
+elif selected_option == "DataBase":
+    st.title("データベース セクション")
+    st.write("ここではデータベースに関する情報を扱います。")
+    # データベースに関する実装を追加
+
+elif selected_option == "Other":
+    st.title("その他のセクション")
+    st.write("ここではその他の情報を表示します。")
+
+
 
 # HTML コードを直接指定して表示
 html_code = """
