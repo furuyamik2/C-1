@@ -23,14 +23,14 @@ if selected_option == "OCR":
 
     # OCRに関する実装を追加
     if uploaded_files:
-        st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
+        st.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
         
         # 出力ファイル名を入力
         output_folder = os.getcwd()
         output_filename = st.text_input("Enter output file name", value="ocr_results.csv", placeholder="ocr_results.csv")
         
         # OCR実行ボタン
-        if st.sidebar.button('Run OCR'):
+        if st.button('Run OCR'):
             # OCRを実行してCSVファイルを生成
             output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
             csv_to_sql(output_file, 'info')
