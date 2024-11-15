@@ -6,6 +6,7 @@ SET_PAGE_CONFIG = {
 
 
 OPTION_MENU_CONFIG = {
+    "menu_title": "Menu",
     "options": ["ORC", "DataBase", "Other"],
     "icons": ["bi-chat-dots", "bi-cloud-arrow-up", "bi-book"],
     "default_index": 0,
