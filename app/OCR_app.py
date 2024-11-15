@@ -42,7 +42,7 @@ if uploaded_files:
                 """
                 <style>
                 .spinner > div {
-                    font-size: 50px; /* フォントサイズを大きく */
+                    font-size: 100px; /* フォントサイズを大きく */
                     color: #008080; /* スピナーの色 */
                 }
                 </style>
