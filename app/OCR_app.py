@@ -43,19 +43,7 @@ if uploaded_files:
         
         # OCR結果を表示
         st.dataframe(concat_df, use_container_width=True)
-# メニューごとのコンテンツ表示
-if selected_option == "OCR":
-    st.title("OCR セクション")
-    st.write("ここではOCRに関する情報を扱います。")
 
-elif selected_option == "DataBase":
-    st.title("データベース セクション")
-    st.write("ここではデータベースに関する情報を扱います。")
-    # データベースに関する実装を追加
-
-elif selected_option == "Other":
-    st.title("その他のセクション")
-    st.write("ここではその他の情報を表示します。")
 
 
 
