@@ -14,6 +14,9 @@ st.set_page_config(**const.SET_PAGE_CONFIG)
 st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 selected_option = option_menu(**const.OPTION_MENU_CONFIG)
+
+uploaded_files = None
+
 # メニューごとのコンテンツ表示
 if selected_option == "OCR":
     # サイドバーにファイルアップローダーを追加
