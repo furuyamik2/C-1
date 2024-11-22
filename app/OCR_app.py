@@ -16,7 +16,7 @@ st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 # HTML コードを直接指定して表示
 html_code = """
-        <h1 style="color: blue; line-height: 1.2;">ようこそ、Food Trackerへ！</h1>
+    <h2 style="color: orange; line-height: 1.2;">ようこそ、FoodTrackerへ!</h2>
     <p style="line-height: 1.5;">このアプリは、食品や商品の情報を効率的に管理するために作られました。</p>
     <p style="line-height: 1.5;">商品名や価格、カテゴリーを登録するだけで、簡単にデータを整理・分類できます。</p>
     <p style="line-height: 1.5;">さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
