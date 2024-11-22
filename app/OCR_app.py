@@ -16,9 +16,12 @@ st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 # HTML コードを直接指定して表示
 html_code = """
-    <h1 style="color: blue;">Hello, Streamlit!</h1>
-    <p>これは直接 Streamlit に書き込んだ HTML コードの表示例です。</p>
-    <p>CSS や JavaScript を含む内容も表示できます。</p>
+        <h1 style="color: blue; line-height: 1.2;">ようこそ、Food Trackerへ！</h1>
+    <p style="line-height: 1.5;">このアプリは、食品や商品の情報を効率的に管理するために作られました。</p>
+    <p style="line-height: 1.5;">商品名や価格、カテゴリーを登録するだけで、簡単にデータを整理・分類できます。</p>
+    <p style="line-height: 1.5;">さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
+    <p style="line-height: 1.5;">直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
+    <p style="line-height: 1.5;">今後、さらに便利な機能やカスタマイズオプションを追加予定です。皆さんのフィードバックをお待ちしています！</p>
 """
 components.html(html_code) 
 
