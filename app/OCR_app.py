@@ -16,7 +16,7 @@ st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 
-with open("./view/html/top.html", "r", encoding="utf-8") as file:
+with open("../app/view/html/top.html", "r", encoding="utf-8") as file:
     top_html = file.read()
 stc.html(top_html)
 
