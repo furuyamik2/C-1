@@ -17,13 +17,15 @@ st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 # HTML コードを直接指定して表示
 html_code = """
     <h2 style="color: orange; line-height: 1.2;">ようこそ、FoodTrackerへ!</h2>
-    <p style="line-height: 1.5;">このアプリは、食品や商品の情報を効率的に管理するために作られました。</p>
-    <p style="line-height: 1.5;">商品名や価格、カテゴリーを登録するだけで、簡単にデータを整理・分類できます。</p>
-    <p style="line-height: 1.5;">さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
-    <p style="line-height: 1.5;">直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
-    <p style="line-height: 1.5;">今後、さらに便利な機能やカスタマイズオプションを追加予定です。皆さんのフィードバックをお待ちしています！</p>
+    <p>このアプリは、食品や商品の情報を効率的に管理するために作られました。</p>
+    <p>商品名や価格、カテゴリーを登録するだけで、簡単にデータを整理・分類できます。</ple=>
+    <p>さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
+    <p>直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
+    <p>今後、さらに便利な機能やカスタマイズオプションを追加予定です。皆さんのフィードバックをお待ちしています！</p=>
 """
 components.html(html_code) 
+
+
 
  # ファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
