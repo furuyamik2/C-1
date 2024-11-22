@@ -23,7 +23,7 @@ html_code = """
     <p>直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
     <p>今後、さらに便利な機能やカスタマイズオプションを追加予定です。皆さんのフィードバックをお待ちしています！</p>
 """
-components.html(html_code)
+components.html(html_code, height=400)
 
  # ファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
