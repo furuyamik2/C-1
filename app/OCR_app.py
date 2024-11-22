@@ -14,15 +14,6 @@ st.set_page_config(**const.SET_PAGE_CONFIG)
 st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
-# HTML コードを直接指定して表示
-html_code = """
-    <h2 style="color: orange; line-height: 1.2;">ようこそ、Food Trackerへ!</h2>
-    <p>このアプリは、食品や商品の情報を効率的に管理するために作られました。</p>
-    <p>商品名や価格、カテゴリーを登録するだけで、簡単にデータを整理・分類できます。</p>
-    <p>さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
-    <p>直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
-"""
-components.html(html_code, height=280)
 
  # ファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
