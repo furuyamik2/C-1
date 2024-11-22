@@ -21,9 +21,8 @@ html_code = """
     <p>商品名や価格、カテゴリーを登録するだけで、簡単にデータを整理・分類できます。</p>
     <p>さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
     <p>直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
-    <p>今後、さらに便利な機能やカスタマイズオプションを追加予定です。皆さんのフィードバックをお待ちしています！</p>
 """
-components.html(html_code, height=400)
+components.html(html_code, height=320)
 
  # ファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
