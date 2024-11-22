@@ -22,7 +22,7 @@ html_code = """
     <p>さらに、登録されたデータは検索や分析にも活用可能で、買い物や在庫管理に役立てることができます。</p>
     <p>直感的なインターフェースで、初心者の方でもすぐに使いこなせます。ぜひ試してみてください！</p>
 """
-components.html(html_code, height=320)
+components.html(html_code, height=280)
 
  # ファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
