@@ -7,6 +7,7 @@ from DB.save_db import load_data
 import streamlit.components.v1 as components
 import const
 from streamlit_option_menu import option_menu
+import streamlit.components.v1 as stc
 
 st.set_page_config(**const.SET_PAGE_CONFIG)
 
@@ -14,6 +15,10 @@ st.set_page_config(**const.SET_PAGE_CONFIG)
 st.title('Food Tracker')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
+
+with open("./view/html/top.html", "r", encoding="utf-8") as file:
+    top_html = file.read()
+stc.html(top_html)
 
  # ファイルアップローダーを追加
 uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
