@@ -198,11 +198,19 @@ def ocr_to_csv(uploaded_files, output_folder, output_name):
             "日用品": 365,
         }
 
-        # 消費期限を計算して追加
+        # 消費期限を計算する関数
         def calculate_expiration(row):
-            days_to_expire = expiry_dict.get(row["カテゴリー"], 5)  # カテゴリーに対応する日数を取得（デフォルト: 5日）
-            expiration_date = datetime.strptime(row["登録日"], "%Y/%m/%d") + timedelta(days=days_to_expire)
-            return expiration_date.strftime("%Y/%m/%d")
+            # カテゴリーに基づく日数を取得（デフォルト: 5日）
+            days_to_expire = expiry_dict.get(row["カテゴリー"], 5)
+            
+            try:
+                # 登録日をdatetimeオブジェクトに変換
+                registration_date = datetime.strptime(row["登録日"], "%Y/%m/%d %H:%M:%S")
+                expiration_date = registration_date + timedelta(days=days_to_expire)
+                return expiration_date.strftime("%Y/%m/%d")
+            except Exception as e:
+                print(f"消費期限計算中のエラー: {e}")
+                return "計算エラー"
 
         # 消費期限を新しいカラムとして追加
         df["消費期限"] = df.apply(calculate_expiration, axis=1)
