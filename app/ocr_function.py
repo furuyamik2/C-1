@@ -5,7 +5,7 @@ import os
 import base64
 import requests
 from io import StringIO
-from datetime import datetime
+from datetime import datetime,timedelta
 from PIL import Image
 import pytz
 
@@ -176,11 +176,43 @@ def ocr_to_csv(uploaded_files, output_folder, output_name):
 
         # データフレームを作成し、カラム名を設定
         df = df = pd.DataFrame(categorized_data, columns=["商品名", "価格", "個数", "カテゴリー", "名称", "登録日"])
+
+        # 各カテゴリごとの消費期限（日数単位）
+        expiry_dict = {
+            "肉": 7,
+            "魚": 3,
+            "野菜": 5,
+            "果物": 7,
+            "穀物": 180,
+            "乳製品": 14,
+            "加工食品": 365,
+            "飲料": 180,
+            "スナック・菓子": 180,
+            "調味料・スパイス": 365,
+            "冷凍食品": 365,
+            "惣菜・即席食品": 7,
+            "健康食品・サプリメント": 365,
+            "ベーカリー製品": 3,
+            "オーガニック食品": 7,
+            "ペット用食品": 180,
+            "日用品": 365,
+        }
+
+        # 消費期限を計算して追加
+        def calculate_expiration(row):
+            days_to_expire = expiry_dict.get(row["カテゴリー"], 5)  # カテゴリーに対応する日数を取得（デフォルト: 5日）
+            expiration_date = datetime.strptime(row["登録日"], "%Y/%m/%d") + timedelta(days=days_to_expire)
+            return expiration_date.strftime("%Y/%m/%d")
+
+        # 消費期限を新しいカラムとして追加
+        df["消費期限"] = df.apply(calculate_expiration, axis=1)
         df['ファイル名'] = uploaded_file.name
 
         concat_df = pd.concat([concat_df, df])
 
-    columns = ["商品名", "価格", "個数", "カテゴリー", "名称", "登録日", "ファイル名"]
+        
+
+    columns = ["商品名", "価格", "個数", "カテゴリー", "名称", "登録日", "消費期限","ファイル名"]
     concat_df.columns = columns
     concat_df = concat_df.reset_index(drop=True)
     print(concat_df)
