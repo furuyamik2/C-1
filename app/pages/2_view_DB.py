@@ -10,9 +10,6 @@ df_from_db = load_data()
 # 編集可能なデータフレームを表示
 edited_df = st.data_editor(df_from_db)
 
-# 編集されたデータフレームを表示
-st.dataframe(edited_df, use_container_width=True)
-
 # 編集内容をデータベースに反映するボタン
 if st.button('保存'):
     conn = sqlite3.connect('food_info.db')
