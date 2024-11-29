@@ -32,13 +32,13 @@ def display_product_expiry():
         # 枠の色の設定
         if days_until_expiration <= 3:
             border_color = '#B22222'  # ダーク赤
-            bg_color = '#FFDDDD'  # 淡い赤
+            bg_color = '#FFFFFF'  # 淡い赤
         elif days_until_expiration <= 7:
             border_color = '#FFD700'  # ゴールド
-            bg_color = '#FFF9E6'  # 淡い黄色
+            bg_color = '#FFFFFF'  # 淡い黄色
         else:
             border_color = '#228B22'  # ダークグリーン
-            bg_color = '#DDFFDD'  # 淡い緑
+            bg_color = '#FFFFFF'  # 淡い緑
 
         # 商品ごとのHTMLを作成
         card_html = f"""
@@ -60,7 +60,7 @@ def display_product_expiry():
         with columns[column_index]:
             st.markdown(card_html, unsafe_allow_html=True)
             # 削除ボタンを追加
-            if st.button(f"削除: {product_name}", key=f"delete_{index}"):
+            if st.button(f"削除", key=f"delete_{index}"):
                 delete_row(product_name)  # 削除関数の呼び出し
                 st.experimental_rerun()  # 再読み込みして表示を更新
 
