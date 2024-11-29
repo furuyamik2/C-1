@@ -23,7 +23,7 @@ def display_product_expiry():
     df_sorted = df.sort_values(by='days_until_expiration', ascending=True)
 
     # 商品ごとのデータを3列に分けて表示
-    columns = st.columns(4)  # 3列のレイアウトを作成
+    columns = st.columns(3)  # 3列のレイアウトを作成
 
     for index, row in df_sorted.iterrows():
         product_name = row['商品名']
@@ -56,7 +56,7 @@ def display_product_expiry():
         """
 
         # カードを順に3列に割り当てて表示
-        with columns[index % 4]:  # 3列レイアウト
+        with columns[index % 3]:  # 3列レイアウト
             st.markdown(card_html, unsafe_allow_html=True)
             if st.button("削除", key=f"delete_{index}"):
                 delete_row(product_name)
