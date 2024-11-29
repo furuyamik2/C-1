@@ -43,7 +43,6 @@ def clear_table(table_name):
     
     # 変更を保存
     conn.commit()
-    print(f"'{table_name}' テーブルのデータが削除されました。")
     
     # 接続を閉じる
     conn.close()
@@ -88,7 +87,6 @@ def update_database(edited_df):
 
         # コミットして変更を保存
         conn.commit()
-        st.success("データベースが更新されました")
     
     except Exception as e:
         # エラーメッセージを表示
