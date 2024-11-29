@@ -13,7 +13,7 @@ edited_df = st.data_editor(df_from_db)
 # 編集内容をデータベースに反映するボタン
 if st.button('保存'):
     # データベースに接続
-    conn = sqlite3.connect('../DB/food_info.db')  # 正しいデータベース名を指定
+    conn = sqlite3.connect('food_info.db')  # 正しいデータベース名を指定
     cursor = conn.cursor()
 
     # 編集されたデータフレームをループして更新
