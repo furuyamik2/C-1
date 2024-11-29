@@ -35,6 +35,7 @@ if uploaded_files:
             # OCRを実行してCSVファイルを生成
             output_file, concat_df = ocr_to_csv(uploaded_files, output_folder, output_filename)
             csv_to_sql(output_file, 'info')
+            csv_to_sql(output_file, 'all')
     
         
         st.success("OCR completed!")
