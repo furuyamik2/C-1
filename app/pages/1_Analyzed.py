@@ -42,7 +42,7 @@ st.write('<h2>商品ごとの消費期限までの日数</h2>', unsafe_allow_htm
 display_product_expiry() 
 
 # Streamlitのボタンで表示
-if st.button('更新'):
+if st.sidebar.button('更新'):
     # 現在の表示を消してから新しい表示をする
     st.empty()  # 現在の表示をリセット
     display_product_expiry()  # 新しい内容を表示
