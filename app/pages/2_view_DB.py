@@ -9,15 +9,25 @@ from DB.save_db import load_data, clear_table,update_database
 st.subheader("現在のデータベース内容")
 df_from_db = load_data()
 
-# 編集可能なデータフレームを表示
-edited_df = st.data_editor(df_from_db)
+# 編集可能なデータフレームを表示（画面いっぱいに表示）
+edited_df = st.data_editor(df_from_db, use_container_width=True)
+
+st.markdown("""
+    <style>
+        .streamlit-expanderHeader {
+            font-size: 18px !important;
+        }
+        .stDataFrame {
+            width: 100% !important;
+            height: 80vh !important;  /* 高さを調整 */
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # 編集内容をデータベースに反映するボタン
 if st.sidebar.button('保存'):
     update_database(edited_df)  # 更新処理を関数呼び出しに変更
-
-# データベース内容が正しく表示されているかを確認
-st.dataframe(edited_df, use_container_width=True)
 
 # データベースを全削除する関数
 def clear_all_data():
