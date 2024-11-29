@@ -1,38 +1,53 @@
 import streamlit as st
+import sqlite3
 import pandas as pd
 from DB.save_db import load_data
-from datetime import datetime
 
-import streamlit as st
-import pandas as pd
-from DB.save_db import load_data
-from datetime import datetime
+# 初期表示としてデータベースの内容を表示
+st.subheader("現在のデータベース内容")
+df_from_db = load_data()
 
-# 商品名と消費期限までの日数を表示
-def display_product_expiry():
-    # データを読み込む
-    df = load_data()
+# 編集可能なデータフレームを表示
+edited_df = st.data_editor(df_from_db)
 
-    # 現在の日付を取得
-    today = datetime.today()
+# 編集内容をデータベースに反映するボタン
+if st.button('保存'):
+    # データベースに接続
+    conn = sqlite3.connect('/full/path/to/food__info.db')  # 正しいデータベース名を指定
+    cursor = conn.cursor()
 
-    # 消費期限カラムをdatetime型に変換
-    df['消費期限'] = pd.to_datetime(df['消費期限'])
+    # 編集されたデータフレームをループして更新
+    for index, row in edited_df.iterrows():
+        # 編集後のデータ
+        updated_row = {
+            '商品名': row['商品名'],
+            '価格': row['価格'],
+            '個数': row['個数'],
+            'カテゴリー': row['カテゴリー'],
+            '消費期限': row['消費期限']
+        }
 
-    # 商品名と消費期限までの日数を計算
-    df['days_until_expiration'] = (df['消費期限'] - today).dt.days
+        # SQL UPDATE文を使用してテーブルの行を更新
+        cursor.execute("""
+            UPDATE info 
+            SET 商品名 = ?, 価格 = ?, 個数 = ?, カテゴリー = ?, 消費期限 = ?
+            WHERE 商品名 = ?
+        """, (
+            updated_row['商品名'],
+            updated_row['価格'],
+            updated_row['個数'],
+            updated_row['カテゴリー'],
+            updated_row['消費期限'],
+            updated_row['商品名']  # 商品名をWHERE句で指定
+        ))
 
-    # 商品名と消費期限までの日数を表示する
-    st.write('<h2>商品ごとの消費期限までの日数</h2>', unsafe_allow_html=True)
+    # 変更をコミットしてデータベースを更新
+    conn.commit()  # コミットして変更を保存
 
-    # 商品ごとのメッセージを作成して表示
-    for index, row in df.iterrows():
-        product_name = row['商品名']
-        days_until_expiration = row['days_until_expiration']
-        message = f'<h3 style="font-size: 24px; color: black;">{product_name}の消費期限まであと{days_until_expiration}日</h3>'
-        st.markdown(message, unsafe_allow_html=True)
+    # 接続を閉じる
+    conn.close()
 
-# 最初に表示
-display_product_expiry()
-
-
+    st.success("データベースが更新されました！")
+    # 更新されたデータを再表示
+    df_from_db = load_data()
+    st.dataframe(df_from_db)
