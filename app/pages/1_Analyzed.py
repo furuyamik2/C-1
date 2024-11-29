@@ -24,9 +24,11 @@ def display_product_expiry():
     for index, row in df.iterrows():
         product_name = row['商品名']
         days_until_expiration = row['days_until_expiration']
-        message = f"{product_name}の消費期限まであと{days_until_expiration}日"
+        message = f"<h4>{product_name}の消費期限まであと{days_until_expiration}日<h4>"
         st.write(message)
 
+display_product_expiry()
+
 # Streamlitのボタンで更新処理
-if st.button("消費期限を更新"):
+if st.button("更新"):
     display_product_expiry()
