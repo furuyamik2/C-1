@@ -12,26 +12,14 @@ df_from_db = load_data()
 # 編集可能なデータフレームを表示（画面いっぱいに表示）
 edited_df = st.data_editor(df_from_db, use_container_width=True)
 
-# スタイルを適用してデータフレームの高さも最大にする
-st.markdown("""
-    <style>
-        .stDataFrame {
-            width: 100% !important;  /* 幅を画面いっぱいに */
-            height: 90vh !important; /* 高さを画面いっぱいに調整 */
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 
 # 編集内容をデータベースに反映するボタン
-if st.sidebar.button('保存'):
+if st.button('保存'):
     update_database(edited_df)  # 更新処理を関数呼び出しに変更
+    st.success("データが更新されました")
 
-# データベースを全削除する関数
-def clear_all_data():
-    clear_table('info')
-    st.warning("データベースがクリアされました")
 
 # ALL CLEARボタン
 if st.sidebar.button('ALL CLEAR'):
-    clear_all_data()  # クリア処理を関数呼び出しに変更
+    clear_table()  # クリア処理を関数呼び出しに変更
+    st.success("データが削除されました")
