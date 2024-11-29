@@ -12,6 +12,7 @@ st.set_page_config(**const.SET_PAGE_CONFIG)
 
 # APP タイトル
 st.title('Food Tracker')
+st.sidebar.title('Pages')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 
