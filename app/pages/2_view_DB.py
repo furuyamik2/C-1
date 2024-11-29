@@ -12,14 +12,12 @@ df_from_db = load_data()
 # 編集可能なデータフレームを表示（画面いっぱいに表示）
 edited_df = st.data_editor(df_from_db, use_container_width=True)
 
+# スタイルを適用してデータフレームの高さも最大にする
 st.markdown("""
     <style>
-        .streamlit-expanderHeader {
-            font-size: 18px !important;
-        }
         .stDataFrame {
-            width: 100% !important;
-            height: 80vh !important;  /* 高さを調整 */
+            width: 100% !important;  /* 幅を画面いっぱいに */
+            height: 90vh !important; /* 高さを画面いっぱいに調整 */
         }
     </style>
 """, unsafe_allow_html=True)
