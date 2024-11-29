@@ -56,7 +56,7 @@ def display_product_expiry():
         """
 
         # カードを順に3列に割り当てて表示
-        with columns[index % 3]:  # 3列レイアウト
+        with columns[index % 6]:  # 3列レイアウト
             st.markdown(card_html, unsafe_allow_html=True)
             if st.button("削除", key=f"delete_{index}"):
                 delete_row(product_name)
