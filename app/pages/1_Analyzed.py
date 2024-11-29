@@ -8,6 +8,9 @@ def display_product_expiry():
     # データを読み込む
     df = load_data()
 
+    # 列名の確認と空白を取り除く
+    df.columns = df.columns.str.strip()
+
     # 現在の日付を取得
     today = datetime.today()
 
