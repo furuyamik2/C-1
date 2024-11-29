@@ -12,12 +12,11 @@ st.set_page_config(**const.SET_PAGE_CONFIG)
 
 # APP タイトル
 st.title('Food Tracker')
-st.sidebar.title('Pages')
 st.markdown(const.HIDE_ST_STYLE, unsafe_allow_html=True)
 
 
  # ファイルアップローダーを追加
-uploaded_files = st.sidebar.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
 # OCRに関する実装
 if uploaded_files:
