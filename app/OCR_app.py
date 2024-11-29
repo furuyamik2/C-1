@@ -20,7 +20,7 @@ uploaded_files = st.file_uploader("Upload PDF files", type=["jpg", "jpeg", "png"
 
 # OCRに関する実装
 if uploaded_files:
-    st.sidebar.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
+    st.write(f"{len(uploaded_files)} ファイルがアップロードされました。")
     
     # 出力ファイル名を入力
     output_folder = os.getcwd()
@@ -29,7 +29,7 @@ if uploaded_files:
    
 
     # OCR実行ボタン
-    if st.sidebar.button('Run OCR'):
+    if st.button('Run OCR'):
         
         with st.spinner('OCRを実行中...'):
             # OCRを実行してCSVファイルを生成
