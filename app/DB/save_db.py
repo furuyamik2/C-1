@@ -46,3 +46,15 @@ def clear_table(table_name):
     
     # 接続を閉じる
     conn.close()
+
+# データベースから行を削除する関数
+def delete_row(product_name):
+    import sqlite3
+    conn = sqlite3.connect('food_info.db')  # フルパスを指定
+    cursor = conn.cursor()
+
+    # データベースから指定された商品名を削除
+    query = "DELETE FROM info WHERE 商品名 = ?"
+    cursor.execute(query, (product_name,))
+    conn.commit()
+    conn.close()

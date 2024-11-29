@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from DB.save_db import load_data
+from DB.save_db import load_data, delete_row  
 
-# 商品名と消費期限までの日数を参列で表示する
 def display_product_expiry():
     # データを読み込む
     df = load_data()
@@ -60,13 +59,11 @@ def display_product_expiry():
         column_index = index % 3
         with columns[column_index]:
             st.markdown(card_html, unsafe_allow_html=True)
+            # 削除ボタンを追加
+            if st.button(f"削除: {product_name}", key=f"delete_{index}"):
+                delete_row(product_name)  # 削除関数の呼び出し
+                st.experimental_rerun()  # 再読み込みして表示を更新
 
 # 商品名と消費期限までの日数を表示する
 st.write('<h2>商品ごとの消費期限までの日数</h2>', unsafe_allow_html=True)
-display_product_expiry() 
-
-# Streamlitのボタンで更新
-if st.sidebar.button('更新'):
-    # 現在の表示をリセットして新しい内容を表示
-    st.empty()
-    display_product_expiry()
+display_product_expiry()
