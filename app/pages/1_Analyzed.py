@@ -31,14 +31,14 @@ def display_product_expiry():
 
         # 枠の色の設定
         if days_until_expiration <= 3:
-            border_color = '#B22222'  # ダーク赤
-            bg_color = '#FFFFFF'  # 淡い赤
+            border_color = '#E57373'  # 薄い赤
+            bg_color = '#FFEBEE'  # 非常に淡い赤
         elif days_until_expiration <= 7:
-            border_color = '#FFD700'  # ゴールド
-            bg_color = '#FFFFFF'  # 淡い黄色
+            border_color = '#FFB74D'  # 薄いオレンジ
+            bg_color = '#FFF8E1'  # 非常に淡いオレンジ
         else:
-            border_color = '#228B22'  # ダークグリーン
-            bg_color = '#FFFFFF'  # 淡い緑
+            border_color = '#81C784'  # 薄い緑
+            bg_color = '#E8F5E9'  # 非常に淡い緑
 
         # 商品ごとのHTMLを作成
         card_html = f"""
@@ -56,13 +56,12 @@ def display_product_expiry():
         """
 
         # カードを順に3列に割り当てて表示
-        column_index = index % 3
-        with columns[column_index]:
+        with columns[index % 3]:  # 3列レイアウト
             st.markdown(card_html, unsafe_allow_html=True)
-            # 削除ボタンを追加
-            if st.button(f"削除", key=f"delete_{index}"):
-                delete_row(product_name)  # 削除関数の呼び出し
-                st.experimental_rerun()  # 再読み込みして表示を更新
+            if st.button("🗑", key=f"delete_{index}"):
+                delete_row(product_name)
+                st.success(f"{product_name} を削除しました。")
+                st.experimental_rerun()
 
 # 商品名と消費期限までの日数を表示する
 st.write('<h2>商品ごとの消費期限までの日数</h2>', unsafe_allow_html=True)
