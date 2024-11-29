@@ -33,21 +33,21 @@ def display_product_expiry():
             margin: 20px 0;
         }
         .grid-item {
-            border: 3px solid;
-            border-radius: 12px;
-            padding: 15px;
+            border: 2px solid;
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
         }
         .red-border { border-color: #B22222; background-color: #FFDDDD; }
         .yellow-border { border-color: #FFD700; background-color: #FFF9E6; }
         .green-border { border-color: #228B22; background-color: #DDFFDD; }
         .product-name {
-            font-size: 1.5em; /* 商品名を大きく表示 */
+            font-size: 1.2em; /* 商品名を少し大きく表示 */
             font-weight: bold;
         }
         .expiration-info {
-            font-size: 1em;
+            font-size: 0.9em; /* 消費期限情報を少し小さく */
             margin-top: 5px;
         }
     </style>
