@@ -66,29 +66,24 @@ def update_database(edited_df):
     cursor = conn.cursor()
 
     try:
-        # 編集されたデータフレームをループして更新
-        for index, row in edited_df.iterrows():
-            # 更新するデータを準備
-            updated_row = {
-                '商品名': row['商品名'],
-                '価格': row['価格'],
-                '個数': row['個数'],
-                'カテゴリー': row['カテゴリー'],
-                '消費期限': row['消費期限']
-            }
+        # テーブルを全て削除して、新しいデータを挿入
+        cursor.execute("DELETE FROM info")  # infoテーブルの内容をクリア
+        conn.commit()
 
-            # SQL UPDATE文でデータを更新
+        # 編集されたデータフレームを一括挿入
+        for index, row in edited_df.iterrows():
             cursor.execute("""
-                UPDATE info 
-                SET 商品名 = ?, 価格 = ?, 個数 = ?, カテゴリー = ?, 消費期限 = ? 
-                WHERE 商品名 = ?
+                INSERT INTO info (商品名, 価格, 個数, カテゴリー, 名称, 登録日, 消費期限, ファイル名)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """, (
-                updated_row['商品名'], 
-                updated_row['価格'], 
-                updated_row['個数'], 
-                updated_row['カテゴリー'], 
-                updated_row['消費期限'], 
-                row['商品名']
+                row['商品名'], 
+                row['価格'], 
+                row['個数'], 
+                row['カテゴリー'], 
+                row['名称'], 
+                row['登録日'], 
+                row['消費期限'], 
+                row['ファイル名']
             ))
 
         # コミットして変更を保存
