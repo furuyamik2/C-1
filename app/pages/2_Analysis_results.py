@@ -13,17 +13,25 @@ df = load_data()
 df.columns = df.columns.str.strip()  # 列名の余分なスペースを削除
 
 # カテゴリーを日本語から英語にマッピング
+# カテゴリーを日本語から英語にマッピング
 category_mapping = {
-    "肉類": "Meat",
-    "魚介類": "Seafood",
+    "肉": "Meat",
+    "魚": "Seafood",
     "野菜": "Vegetables",
     "果物": "Fruits",
     "穀物": "Grains",
     "乳製品": "Dairy",
     "加工食品": "Processed Foods",
-    "お菓子": "Snacks",
     "飲料": "Beverages",
-    "その他": "Others"
+    "スナック・菓子": "Snacks & Sweets",
+    "調味料・スパイス": "Seasonings & Spices",
+    "冷凍食品": "Frozen Foods",
+    "惣菜・即席食品": "Ready Meals & Instant Foods",
+    "健康食品・サプリメント": "Health Foods & Supplements",
+    "ベーカリー製品": "Bakery Products",
+    "オーガニック食品": "Organic Foods",
+    "ペット用食品": "Pet Foods",
+    "日用品": "Daily Necessities"
 }
 
 # データのカテゴリーをマッピング
