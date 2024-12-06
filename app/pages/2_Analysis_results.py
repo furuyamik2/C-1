@@ -2,11 +2,14 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import japanize_matplotlib  # 日本語対応
 from datetime import datetime
 from DB.save_db import load_data
+from matplotlib import rcParams
 
 def display_all_charts():
+    # 日本語フォントを設定
+    rcParams["font.family"] = "Noto Sans CJK JP"  # 必要に応じて他のフォントを設定
+
     # データを読み込む
     df = load_data()
     df.columns = df.columns.str.strip()
