@@ -26,25 +26,18 @@ def get_label(col_name):
     return label_map.get(col_name, col_name)  # マッピングがない場合は元の名前
 
 # グラフ表示関数
-def plot_pie(data, column, title):
-    counts = data[column].value_counts()
-    fig, ax = plt.subplots(figsize=(6, 6))
-    ax.pie(
-        counts.values,
-        labels=counts.index,
-        autopct='%1.1f%%',
-        startangle=90,
-        colors=sns.color_palette("pastel"),
-    )
-    ax.set_title(title, fontsize=14)
-    st.pyplot(fig)
-
-def plot_bar(data, x_col, y_col, title):
-    totals = data.groupby(x_col)[y_col].sum()
+def plot_bar(data, x_col, y_col, title, count_plot=False):
     fig, ax = plt.subplots(figsize=(8, 4))
-    sns.barplot(x=totals.index, y=totals.values, palette="muted", ax=ax)
+    if count_plot:
+        counts = data[x_col].value_counts()
+        sns.barplot(x=counts.index, y=counts.values, palette="pastel", ax=ax)
+        ax.set_ylabel("Count", fontsize=12)
+    else:
+        totals = data.groupby(x_col)[y_col].sum()
+        sns.barplot(x=totals.index, y=totals.values, palette="muted", ax=ax)
+        ax.set_ylabel(get_label(y_col), fontsize=12)
+
     ax.set_xlabel(get_label(x_col), fontsize=12)
-    ax.set_ylabel(get_label(y_col), fontsize=12)
     ax.set_title(title, fontsize=14)
     ax.tick_params(axis='x', rotation=45)
     st.pyplot(fig)
@@ -69,9 +62,9 @@ def plot_line(data, column, title):
 
 # メイン関数
 def display_all_charts():
-    # カテゴリー別の割合（円グラフ）
-    st.header("Category Proportions")
-    plot_pie(df, "カテゴリー", "Proportion of Products by Category")
+    # カテゴリー別の商品数（棒グラフ）
+    st.header("Product Count by Category")
+    plot_bar(df, "カテゴリー", None, "Product Count by Category", count_plot=True)
 
     # 消費期限の分布（棒グラフ）
     st.header("Expiration Date Distribution")
