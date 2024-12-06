@@ -82,6 +82,7 @@ def display_all_charts():
     ax4.tick_params(axis='x', rotation=45)
     st.pyplot(fig4)
 
+    
     # カテゴリー別の合計金額（棒グラフ）
     st.header("カテゴリー別の合計金額")
     category_totals = df.groupby("カテゴリー")["価格"].sum()
@@ -90,8 +91,12 @@ def display_all_charts():
     ax5.set_xlabel("Category", fontsize=12)
     ax5.set_ylabel("Total Price", fontsize=12)
     ax5.set_title("Total Price by Category", fontsize=14)
-    ax5.tick_params(axis='x', rotation=45)
+
+    # x軸ラベルを縦に回転
+    ax5.tick_params(axis='x', rotation=90)
+
     st.pyplot(fig5)
+
 
 if __name__ == "__main__":
     display_all_charts()
