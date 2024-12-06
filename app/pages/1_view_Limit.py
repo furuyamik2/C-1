@@ -14,10 +14,7 @@ def display_product_expiry():
     today = datetime.today()
 
     # 消費期限カラムをdatetime型に変換
-    df['消費期限'] = pd.to_datetime(df['消費期限'], errors='coerce')  # 無効な日付をNaTに変換
-
-    # NaT（無効な日付）を削除
-    df = df.dropna(subset=['消費期限'])
+    df['消費期限'] = pd.to_datetime(df['消費期限'])
 
     # 商品名と消費期限までの日数を計算
     df['days_until_expiration'] = (df['消費期限'] - today).dt.days
