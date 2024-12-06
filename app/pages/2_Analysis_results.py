@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib import rcParams
 from DB.save_db import load_data
-import japanize_matplotlib
+
 
 # フォント設定（日本語対応）
 plt.rcParams['font.family'] = 'IPAexGothic'  # 日本語フォント（例: IPAexGothic）
