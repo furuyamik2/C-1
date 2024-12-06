@@ -12,10 +12,19 @@ rcParams["font.family"] = "IPAexGothic"  # 日本語フォント対応
 df = load_data()
 df.columns = df.columns.str.strip()  # 列名の余分なスペースを削除
 
+# 表示用ラベルを定義（日本語 → 英語）
+label_map = {
+    "カテゴリー": "Category",
+    "消費期限": "Expiration Date",
+    "価格": "Price",
+    "登録日": "Registration Date",
+    "個数": "Quantity",
+}
+
 # メイン関数
 def display_all_charts():
     # カテゴリー別の割合（円グラフ）
-    st.header("カテゴリー別の割合")
+    st.header("Category Proportions")
     category_counts = df["カテゴリー"].value_counts()
     fig1, ax1 = plt.subplots(figsize=(6, 6))
     ax1.pie(
@@ -29,7 +38,7 @@ def display_all_charts():
     st.pyplot(fig1)
 
     # 消費期限の分布（棒グラフ）
-    st.header("消費期限の分布")
+    st.header("Expiration Date Distribution")
     df["消費期限"] = pd.to_datetime(df["消費期限"])
     expiration_counts = df["消費期限"].dt.to_period('M').value_counts().sort_index()
     fig2, ax2 = plt.subplots(figsize=(8, 4))
@@ -41,7 +50,7 @@ def display_all_charts():
     st.pyplot(fig2)
 
     # 価格帯の分布（ヒストグラム）
-    st.header("価格帯の分布")
+    st.header("Price Distribution")
     fig3, ax3 = plt.subplots(figsize=(8, 4))
     sns.histplot(df["価格"], bins=10, kde=False, color="salmon", ax=ax3)
     ax3.set_xlabel("Price Range", fontsize=12)
@@ -50,7 +59,7 @@ def display_all_charts():
     st.pyplot(fig3)
 
     # 登録日の商品数の推移（折れ線グラフ）
-    st.header("登録日ごとの追加商品数の推移")
+    st.header("Product Addition Trend by Registration Date")
     df["登録日"] = pd.to_datetime(df["登録日"])
     registration_counts = df["登録日"].dt.date.value_counts().sort_index()
     fig4, ax4 = plt.subplots(figsize=(8, 4))
@@ -62,7 +71,7 @@ def display_all_charts():
     st.pyplot(fig4)
 
     # カテゴリー別の合計金額（棒グラフ）
-    st.header("カテゴリーごとの合計金額")
+    st.header("Total Price by Category")
     category_totals = df.groupby("カテゴリー")["価格"].sum()
     fig5, ax5 = plt.subplots(figsize=(8, 4))
     sns.barplot(x=category_totals.index, y=category_totals.values, palette="muted", ax=ax5)
@@ -71,16 +80,6 @@ def display_all_charts():
     ax5.set_title("Total Price by Category", fontsize=14)
     ax5.tick_params(axis='x', rotation=45)
     st.pyplot(fig5)
-
-    # 個数別商品分布（棒グラフ）
-    st.header("個数別商品分布")
-    quantity_counts = df["個数"].value_counts().sort_index()
-    fig6, ax6 = plt.subplots(figsize=(8, 4))
-    quantity_counts.plot(kind="bar", ax=ax6, color="purple")
-    ax6.set_xlabel("Quantity", fontsize=12)
-    ax6.set_ylabel("Number of Products", fontsize=12)
-    ax6.set_title("Product Distribution by Quantity", fontsize=14)
-    st.pyplot(fig6)
 
 if __name__ == "__main__":
     display_all_charts()
