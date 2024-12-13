@@ -21,5 +21,5 @@ if st.button('保存'):
 
 # ALL CLEARボタン
 if st.sidebar.button('ALL CLEAR'):
-    clear_table()  # クリア処理を関数呼び出しに変更
+    clear_table('info')  # クリア処理を関数呼び出しに変更
     st.success("データが削除されました")
